@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
     get '/signup' do
        if logged_in?
-            redirect to '/budgets'
+            user = User.find_by(id: session[:user_id])
+            redirect to "/#{user.slug}"
        else
             erb :'users/sign_up'
        end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
         if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && !User.all.any? {|u| u.username == params[:username].downcase}
             user = User.create(username: params[:username].downcase, password: params[:password])
             session[:user_id] = user.id
-            redirect to '/budgets'
+            redirect to "/#{user.slug}"
         else
             if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && User.all.any? {|u| u.username == params[:username].downcase}
                 flash[:message] = "Username already taken! Please try again!"
@@ -34,10 +35,14 @@ class UsersController < ApplicationController
         end
     end
 
+    post 'login' do
+
+    end
+
     get '/:slug' do
         if logged_in?
             @user = User.find_by_slug(params[:slug])
-            erb :user_profile
+            erb :'users/user_profile'
         else
             redirect to "/login"
         end
