@@ -37,6 +37,10 @@ class ApplicationController < Sinatra::Base
             end
         end
 
+        def valid_number?(input)
+            input.to_i != 0 && input.scan(/\D/).empty?  
+        end
+
     private
         def valid_password?(password)
             special_characters = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"

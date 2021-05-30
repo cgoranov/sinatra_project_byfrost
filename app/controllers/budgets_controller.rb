@@ -19,7 +19,7 @@ class BudgetsController < ApplicationController
     end
 
     post '/budgets' do
-        if params[:target].to_i != 0 && params[:target].scan(/\D/).empty?  
+        if valid_number?(params[:target])  
             new_budget = Budget.create(name: params[:name].downcase, target: params[:target])
             current_user.budgets << new_budget
             current_user.save
