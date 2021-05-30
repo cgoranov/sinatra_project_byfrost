@@ -1,5 +1,20 @@
+
+
+<br>
+<h2>Sign up</h2>
+<br>
+<% if flash.has?(:message)%>
+<%= flash[:message]%>
+<%end%>
 <form method="post" action="/signup">
-<label style="font-family:calibri; text-align:center;">Username <input type="text" id="sign_up_username" name="username"></label>
-<label style="font-family:calibri; text-align:center;">Password <input type="text" id="sign_up_password" name="password"></label>
+<label>Username <input type="text" id="sign_up_username" name="username"></label>
+<br>
+<label>Password <input type="text" id="sign_up_password" name="password"></label>
+<br>
 <input type="submit" value="Sign me up!">
 </form>
+
+<ul>
+    <li> Username must be between 6 to 10 characters. Not case sensitive.
+    <li> Password must be between 6 to 10 digits and contain at least one special character - *&^%$#`
+</ul>

@@ -25,6 +25,12 @@ class ApplicationController < Sinatra::Base
             !!current_user
         end
 
+        def valid_password?(password)
+            special_characters = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+            sc_array = special_characters.split("")
+            sc_array.any? {|c| password.include?(c)} && password.length.between?(6, 10) 
+        end
+
     end
 
 end
