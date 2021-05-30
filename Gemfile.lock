@@ -55,7 +55,6 @@ GEM
       activerecord (>= 4.1)
       sinatra (>= 1.0)
     sqlite3 (1.4.2)
-    sysrandom (1.0.5)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tux (0.3.0)
@@ -80,7 +79,6 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   sqlite3
-  sysrandom
   tux
 
 BUNDLED WITH
