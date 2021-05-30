@@ -16,7 +16,7 @@
         <th><%=p.po_number%></th>
         <th><%=p.vendor.name%></th>
         <th><%=format_number(p.po_authorized_amount)%></th>
-        <th><a href="/purchase_order/edit">edit</a> or <a href="/purchase_order/delete">delete</a></th>
+        <th><a href="/purchase_order/edit/<%=p.id%>">edit</a> or <a href="/purchase_order/delete/<%=p.id%>">delete</a></th>
         <%@open_po_sum += p.po_authorized_amount%>
     <tr>
      <%end%>

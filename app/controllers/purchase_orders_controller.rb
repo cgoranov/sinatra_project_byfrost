@@ -45,4 +45,15 @@ class PurchaseOrdersController < ApplicationController
         end
     end
 
+    get '/purchase_orders/edit/:id' do
+        if logged_in?
+            @po = PurchaseOrder.find_by(id: params[:id])
+            erb :po_edit
+        else
+            redirect to '/user/login'
+        end
+    end
+
+
+
 end
