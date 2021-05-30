@@ -36,7 +36,14 @@ class UsersController < ApplicationController
     end
 
     post 'login' do
-
+        user = User.find_by(username: params[:username].downcase)
+        if !!user & user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect to "/#{user.slug}"
+        else
+            flash[:message] = "Invalid Username or Password. Please try again!"
+            redirect to '/login'
+        end
     end
 
     get '/:slug' do
