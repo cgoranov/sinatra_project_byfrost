@@ -26,10 +26,10 @@ class PurchaseOrdersController < ApplicationController
             else
                 @po = PurchaseOrder.create(params[:po])
                 if params[:po][:vendor_id] == ""
-                    new_vendor = Vendor.create(params[:vendor])
+                    new_vendor = Vendor.create(params[:vendor][:name].downcase)
                     @po.vendor = new_vendor
                 elsif params[:po][:budget_id] == ""
-                    new_budget = Budget.create(params[:budget])
+                    new_budget = Budget.create(params[:budget][:name].downcase)
                     @po.budget = new_budget
                 end
                 redirect to "/budgets/#{@po.budget.id}"

@@ -9,13 +9,21 @@ Edit Purchase Order
 <br>
 <label>PO Authorized Amount: <input type="text" id="edit_po_auth_amount" name="po[:po_number]" value="<%=@po.po_authorized_amount%>"></label>
 <br>
-
-
-
-
-
-
-
-
-
+<br>
+Change to another existing vendor (current vendor selected by default):
+<br>
+  <select id="list_of_vendors" name="po[vendor_id]">
+    <%Vendor.all.each do |v|%>
+    <option value="<%=v.id%>" <%="selected" if v.id == @po.vendor.id%>><%=v.name.capitalize%></option>
+    <%end%>
+  </select>
+  <br>
+<br>
+Change to another existing budget (current budget selected by default):
+<br>
+  <select id="list_of_budgets" name="po[budget_id]">
+    <%Budget.all.each do |b|%>
+    <option value="<%=b.id%>" <%="selected" if b.id == @po.budget.id%>><%=b.name.capitalize%></option>
+    <%end%>
+  </select>
 </form>
