@@ -11,13 +11,14 @@
         <th>PO Vendor</th>
         <th>PO Authorized Amount</th>
         <th>PO Adjustments</th>
-    </tr>
         <%@budget.purchase_orders.each do |p|%>
-        <th><%=%></th>
-        <th>PO Vendor</th>
-        <th>PO Authorized Amount</th>
+    </tr>
+        <th><%=p.po_number%></th>
+        <th><%=p.vendor%></th>
+        <th><%=p.po_authorized_amount%></th>
         <th>PO Adjustments</th>
     <tr>
+     <%end%>
         <th><a href="/purchase_order/new"> Add PO</th>
         <th></th>
         <th></th>

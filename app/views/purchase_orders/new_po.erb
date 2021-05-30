@@ -15,7 +15,7 @@ Create new purchase order!
 <br>
  <label>Choose a vendor:</label>
   <select id="list_of_vendors" name="po[vendor_id]">
-    <option value=""></option>
+    <option value=<%=nil%>></option>
     <%Vendor.all.each do |v|%>
     <option value="<%=v.id%>"><%=v.name%></option>
     <%end%>
