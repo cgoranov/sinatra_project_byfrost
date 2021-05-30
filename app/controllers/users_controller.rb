@@ -57,6 +57,15 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/user/delete' do
+        if logged_in?
+            current_user.destroy
+            redirect to '/'
+        else
+            redirect to "/user/login"
+        end
+    end
+
     get '/user/:slug' do
         if logged_in?
             @user = User.find_by_slug(params[:slug])
@@ -66,4 +75,5 @@ class UsersController < ApplicationController
         end
     end
 
+   
 end
