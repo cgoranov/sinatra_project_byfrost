@@ -1,2 +1,10 @@
 
 Your Budgets
+<br>
+<a href="/budgets/new">Add new budget +</a>
+<br>
+<%@user.budgets.each do |b|%>
+<br>
+<%="#{b.name.capitalize} Budget"%>
+<br>
+<%end%>
