@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && !User.all.any? {|u| u.username == params[:username].downcase}
             user = User.create(username: params[:username].downcase, password: params[:password])
             session[:user_id] = user.id
+            flash[:messsage] = nil
             redirect to "/#{user.slug}"
         else
             if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && User.all.any? {|u| u.username == params[:username].downcase}
@@ -48,6 +49,15 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/logout' do 
+        if logged_in?
+            session.clear
+            redirect to '/'
+        else
+            redirect to '/login'
+        end
+    end
+
     get '/:slug' do
         if logged_in?
             @user = User.find_by_slug(params[:slug])
@@ -56,6 +66,5 @@ class UsersController < ApplicationController
             redirect to "/login"
         end
     end
-
 
 end
