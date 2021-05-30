@@ -3,29 +3,44 @@
 Create new purchase order!
 <br>
 <br>
+<%=flash[:message]%>
+<br>
+<br>
 <form method="post" action="/purchase_order">
-<label>Purchase Order Number:<input type="text" id="new_po_number" name="po[:po_number]"></label>
+<label>Purchase Order Number:<input type="text" id="new_po_number" name="po[po_number]"></label>
 <br>
 <br>
-<label>Purchase Order Authorized Amount:<input type="text" id="new_po_authorized_amount" name="po[:po_authorized_amount]"></label>
+<label>Purchase Order Authorized Amount:<input type="text" id="new_po_authorized_amount" name="po[po_authorized_amount]"></label>
 <br>
 <br>
- <label>Choose a Vendor:</label>
-  <select id="list_of_vendors" name="po[vendor_ids][]">
-    <option name="" value=""></option>
+ <label>Choose a vendor:</label>
+  <select id="list_of_vendors" name="po[vendor_id]">
+    <option value=""></option>
     <%Vendor.all.each do |v|%>
-    <option name="<%=v.id%>" value="<%=v.id%>"><%=v.name%></option>
+    <option value="<%=v.id%>"><%=v.name%></option>
     <%end%>
   </select>
 <br>
 <br>
-<label>Choose a Budget:</label>
-  <select id="list_of_budgets" name="po[budget_ids][]">
-    <option name="" value=""></option>
+<label>Choose a budget to assign to:</label>
+  <select id="list_of_budgets" name="po[budget_id]">
+    <option value=""></option>
     <%Budget.all.each do |b|%>
-    <option name="<%=b.id%>" value="<%=b.id%>"><%=b.name%></option>
+    <option value="<%=b.id%>"><%=b.name%></option>
     <%end%>
   </select>
+<br>
+<br>
+Create new vendor to assign to PO:
+<br>
+<label>Vendor Name:<input type="text" id="new_vendor" name="vendor[name]"></label>
+<br>
+<br>
+Create new budget to assign to PO:
+<br>
+<label>Budget Name:<input type="text" id="new_budget_name" name="budget[name]"></label>
+<br>
+<label>Budget Target:<input type="text" id="new_budget_target" name="budget[target]"></label>
 <br>
 <br>
 <input type="submit" value="Create Purchase Order!">
