@@ -38,6 +38,8 @@ class UsersController < ApplicationController
         if logged_in?
             @user = User.find_by_slug(params[:slug])
             erb :user_profile
+        else
+            redirect to "/login"
         end
     end
 
