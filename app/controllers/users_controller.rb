@@ -34,6 +34,12 @@ class UsersController < ApplicationController
         end
     end
 
-    get ''
+    get '/:slug' do
+        if logged_in?
+            @user = User.find_by_slug(params[:slug])
+            erb :user_profile
+        end
+    end
+
 
 end
