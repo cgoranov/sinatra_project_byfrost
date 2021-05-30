@@ -10,13 +10,13 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        if valid_password?(params[:password]) && params[:username].between?(6, 10) && User.all.any? {|u| u.username == params[:username].downcase}
-            user = User.create(useranme: params[:username].downcase, password: params[:password])
+        if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && !User.all.any? {|u| u.username == params[:username].downcase}
+            user = User.create(username: params[:username].downcase, password: params[:password])
             session[:user_id] = user.id
-            erb :budgets
+            redirect to '/budgets'
         else
             flash[:message] = "Username and password did not meet criteria. Please try again!"
-            erb :sign_up
+            erb :'users/sign_up'
         end
 
     end
