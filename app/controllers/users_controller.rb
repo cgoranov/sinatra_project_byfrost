@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
     get '/login' do 
         if !logged_in?
+            flash[:message] 
             erb :'users/log_in'
         else
             user = User.find_by(id: session[:user_id])
@@ -35,10 +36,11 @@ class UsersController < ApplicationController
         end
     end
 
-    post 'login' do
+    post '/login' do
         user = User.find_by(username: params[:username].downcase)
-        if !!user & user.authenticate(params[:password])
+        if !!user && !!user.authenticate(params[:password])
             session[:user_id] = user.id
+            flash[:message] = nil
             redirect to "/#{user.slug}"
         else
             flash[:message] = "Invalid Username or Password. Please try again!"

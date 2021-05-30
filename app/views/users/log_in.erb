@@ -2,8 +2,10 @@
 <br>
 <br>
 <% if flash.has?(:message)%>
-<%= flash[:message]%>
+<%=flash[:message]%>
 <%end%>
+<br>
+<br>
 <form method="post" action="/login">
 <label>Username: <input type="text" id="log_in_username" name="username"></label>
 <label>Password: <input type="text" id="log_in_password" name="password"></label>
