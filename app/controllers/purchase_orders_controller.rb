@@ -55,7 +55,8 @@ class PurchaseOrdersController < ApplicationController
     end
 
     patch '/purchase_order/edit/:id' do 
-
+    
+  
     end
 
 
