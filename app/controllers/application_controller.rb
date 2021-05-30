@@ -25,6 +25,18 @@ class ApplicationController < Sinatra::Base
             !!current_user
         end
 
+        def format_number(number)
+            input = number.to_s
+            if input.include?(".")
+                fractional = input.split(".")[1]
+                integral = input.split(".")[0]
+                integral_with_commas = integral.to_s.reverse.scan(/.{1,3}/).join(',').reverse
+                integral_with_commas + "." + fractional
+            else
+                input.to_s.reverse.scan(/.{1,3}/).join(',').reverse
+            end
+        end
+
     private
         def valid_password?(password)
             special_characters = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"

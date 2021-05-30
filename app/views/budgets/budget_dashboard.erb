@@ -2,7 +2,7 @@
 <a href="/budgets">Your Budgets</a>
 <br>
 <br>
-<%@budget.name%> Budget Dashboard
+<%=@budget.name.capitalize%> Budget Dashboard
 <br>
 <br>
 <table>
@@ -10,5 +10,10 @@
         <th>PO Number</th>
         <th>PO Vendor</th>
         <th>PO Authorized Amount</th>
+    </tr>
+    <tr>
+        <th><%=@budget.name.capitalize%> Target</th>
+        <th></th>
+        <th><%= format_number(@budget.target) %></th>
     </tr>
 </table>
