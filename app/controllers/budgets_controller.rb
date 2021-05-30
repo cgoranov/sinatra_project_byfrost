@@ -24,5 +24,13 @@ class BudgetsController < ApplicationController
         current_user.save
         redirect to '/budgets'
     end
+
+    get '/budgets/:id' do
+        if logged_in?
+            @budget = Budget.find_by(id: params[:id])
+        else
+            redirect to '/user/login'
+        end
+    end
     
 end

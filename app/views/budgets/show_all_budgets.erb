@@ -7,7 +7,7 @@ Your Budgets
 <%if !@user.budgets.empty?%>
 <%@user.budgets.each do |b|%>
 <br>
-<%="#{b.name.capitalize} budget"%>
+<a href="/budgets/<%=b.id%>"><%="#{b.name.capitalize} budget"%></a>
 <br>
 <%end%>
 <%else%>
