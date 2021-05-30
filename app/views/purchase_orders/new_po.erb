@@ -4,7 +4,13 @@ Create new purchase order!
 <br>
 <br>
 <form method="post" action="/purchase_order">
-<label>Purchase Order :<input type="text" id="new_po_number" name="po_number"></label>
-<label>Budget Target:<input type="text" id="new_po_authorized_amount" name="po_authorized_amount"></label>
+<label>Purchase Order Number:<input type="text" id="new_po_number" name="po[:po_number]"></label>
+<label>Purchase Order Authorized Amount:<input type="text" id="new_po_authorized_amount" name="po[:po_authorized_amount]"></label>
+ <label>Choose a Vendor:</label>
+ <%Vendor.all.each do |v|%>
+  <select id="list_of_vendors" name="po[vendor_ids][]">
+    <option id="<%=v.id%>" value="<%=v.id%>" name="<%=v.id%>"><%=v.name%></option>
+    <%end%>
+  </select>
 <input type="submit" value="Create Purchase Order!">
 </form>
