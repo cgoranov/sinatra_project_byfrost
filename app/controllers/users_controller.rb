@@ -25,4 +25,15 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/login' do 
+        if !logged_in?
+            erb :'users/log_in'
+        else
+            user = User.find_by(id: session[:user_id])
+            redirect to "/#{user.slug}"
+        end
+    end
+
+    get ''
+
 end
