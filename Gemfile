@@ -8,6 +8,7 @@ gem 'require_all'
 gem 'sqlite3'
 gem 'bcrypt'
 gem 'rack-flash3'
+gem 'sysrandom'
 
 
 group :development do
