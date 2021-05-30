@@ -27,13 +27,25 @@ class ApplicationController < Sinatra::Base
 
         def format_number(number)
             input = number.to_s
-            if input.include?(".")
+            if input.include?("-") && input.include?(".") 
+                negative = input.first
+                number = input.split("-")[1]
+                fractional = number.split(".")[1]
+                integral = number.split(".")[0]
+                integral_with_commas = integral.reverse.scan(/.{1,3}/).join(',').reverse
+                negative + integral_with_commas + "." + fractional
+            elsif input.include?("-") 
+                negative = input.first
+                number = input.split("-")[1]
+                integral_with_commas = number.reverse.scan(/.{1,3}/).join(',').reverse
+                negative + integral_with_commas 
+            elsif input.include?(".") 
                 fractional = input.split(".")[1]
                 integral = input.split(".")[0]
-                integral_with_commas = integral.to_s.reverse.scan(/.{1,3}/).join(',').reverse
+                integral_with_commas = integral.reverse.scan(/.{1,3}/).join(',').reverse
                 integral_with_commas + "." + fractional
             else
-                input.to_s.reverse.scan(/.{1,3}/).join(',').reverse
+                input.reverse.scan(/.{1,3}/).join(',').reverse
             end
         end
 

@@ -14,18 +14,29 @@
         <%@budget.purchase_orders.each do |p|%>
     </tr>
         <th><%=p.po_number%></th>
-        <th><%=p.vendor%></th>
-        <th><%=p.po_authorized_amount%></th>
-        <th>PO Adjustments</th>
+        <th><%=p.vendor.name%></th>
+        <th><%=format_number(p.po_authorized_amount)%></th>
+        <th><a href="/purchase_order/edit">edit</a> or <a href="/purchase_order/delete">delete</a></th>
+        <%@open_po_sum += p.po_authorized_amount%>
     <tr>
      <%end%>
-        <th><a href="/purchase_order/new"> Add PO</th>
+        <th><a href="/purchase_order/new"> Add PO</a></th>
         <th></th>
         <th></th>
+    </tr>
+    <tr>
+        <th>Total Open PO Project Spend</th>
+        <th></th>
+        <th><%= format_number(@open_po_sum) %></th>
     </tr>
     <tr>
         <th><%=@budget.name.capitalize%> Target</th>
         <th></th>
         <th><%= format_number(@budget.target) %></th>
+    </tr>
+    <tr>
+        <th><%="Fav/(Unfav) vs Target"%></th>
+        <th></th>
+        <th><%= format_number(@budget.target - @open_po_sum) %></th>
     </tr>
 </table>

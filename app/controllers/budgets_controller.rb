@@ -33,6 +33,7 @@ class BudgetsController < ApplicationController
     get '/budgets/:id' do
         if logged_in?
             @budget = Budget.find_by(id: params[:id])
+            @open_po_sum = 0
             erb :'budgets/budget_dashboard'
         else
             redirect to '/user/login'
