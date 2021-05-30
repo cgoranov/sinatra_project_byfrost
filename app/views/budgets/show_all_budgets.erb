@@ -1,10 +1,16 @@
 
 Your Budgets
 <br>
+<br>
 <a href="/budgets/new">Add new budget +</a>
 <br>
+<%if !@user.budgets.empty?%>
 <%@user.budgets.each do |b|%>
 <br>
 <%="#{b.name.capitalize} budget"%>
 <br>
+<%end%>
+<%else%>
+<br>
+<%="You have no budgets. Try making one!"%>
 <%end%>
