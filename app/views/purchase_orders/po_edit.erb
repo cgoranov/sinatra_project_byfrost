@@ -3,7 +3,7 @@
 Edit Purchase Order Number <%=@po.po_number%>
 <br>
 <br>
-<form method="post" action="/purchase_orders/edit">
+<form method="post" action="/purchase_orders/edit/<%=@po.id%>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <label>PO Authorized Amount: <input type="text" id="edit_po_auth_amount" name="po[:po_number]" value="<%=@po.po_authorized_amount%>"></label>
 <br>

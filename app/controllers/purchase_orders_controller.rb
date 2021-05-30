@@ -55,10 +55,22 @@ class PurchaseOrdersController < ApplicationController
     end
 
     patch '/purchase_order/edit/:id' do 
-    
+        @po = PurchaseOrder.find_by(id: params[:id])
+        if valid_number?(params[:po][:po_authorized_amount]) 
+            @po.update(po_authorized_amount: params[:po][:po_authorized_amount])
+            if params[:vendor][:name] != "" && Vendor.all.any? {|v| v.name == params[:vendor][:name].downcase}
+                new_vendor = Vendor.create(name: params[:vendor][:name])
+                @po.vendor = new_vendor
+                @po.save
+            else
+                @po.update(params[:po][:vendor_id])
+            end
+            
+        else
+            flash[:message] = "PO Authorized Amount must be numbers!"
+            redirect to "/purchase_order/edit/#{params[:id]}"
+        end     
   
     end
-
-
 
 end
