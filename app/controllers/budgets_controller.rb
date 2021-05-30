@@ -9,5 +9,13 @@ class BudgetsController < ApplicationController
             redirect to '/'
         end
     end
+
+    get '/budgets/new' do
+        if logged_in?
+            erb :new_budget
+        else
+            redirect to '/login'
+        end
+    end
     
 end

@@ -29,7 +29,6 @@ class UsersController < ApplicationController
 
     get '/login' do 
         if !logged_in?
-            flash[:message] 
             erb :'users/log_in'
         else
             user = User.find_by(id: session[:user_id])
