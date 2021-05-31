@@ -12,25 +12,32 @@ class PurchaseOrdersController < ApplicationController
     post '/purchase_order' do
        if valid_number?(params[:po][:po_number]) && valid_number?(params[:po][:po_authorized_amount]) && !PurchaseOrder.all.any? {|p| p.po_number == params[:po][:po_number].to_i}
             if params[:po][:vendor_id] == "" && params[:vendor][:name] == ""       
-                flash[:message] = "please add or assign vendor to PO!"
+                flash[:message] = "Either add or assign vendor to PO!"
                 redirect to '/purchase_order/new'
             elsif params[:po][:budget_id] == "" && params[:budget][:name] == ""
-                flash[:message] = "please add or assign budget to PO!"
+                flash[:message] = "Either add or assign budget to PO!"
                 redirect to '/purchase_order/new'
             elsif params[:po][:vendor_id] != "" && params[:vendor][:name] != ""       
-                flash[:message] = "please add or assign ONE vendor to PO!"
+                flash[:message] = "Please add or assign ONE vendor to PO!"
                 redirect to '/purchase_order/new'
             elsif params[:po][:budget_id] != "" && params[:budget][:name] != ""
-                flash[:message] = "please add or assign ONE budget to PO!"
+                flash[:message] = "Please add or assign ONE budget to PO!"
                 redirect to '/purchase_order/new'
             else
                 @po = PurchaseOrder.create(params[:po])
                 if params[:po][:vendor_id] == ""
-                    new_vendor = Vendor.create(params[:vendor][:name].downcase)
+                    new_vendor = Vendor.create(name: params[:vendor][:name].downcase)
                     @po.vendor = new_vendor
-                elsif params[:po][:budget_id] == ""
+                end
+                if params[:vendor][:name] == ""
+                    @po.update(vendor_id: params[:po][:vendor_id])
+                end
+                if params[:po][:budget_id] == ""
                     new_budget = Budget.create(params[:budget][:name].downcase)
                     @po.budget = new_budget
+                end
+                if params[:budget][:name] == ""
+                    @po.update(budget_id: params[:po][:budget_id])
                 end
                 redirect to "/budgets/#{@po.budget.id}"
             end
@@ -56,7 +63,6 @@ class PurchaseOrdersController < ApplicationController
 
     patch '/purchase_order/edit/:id' do 
         @po = PurchaseOrder.find_by(id: params[:id])
-        binding.pry
         if valid_number?(params[:po][:po_authorized_amount]) 
             if Vendor.all.any? {|v| v.name == params[:vendor][:name].downcase}
                 flash[:message] = "Vendor name already taken, please create another one!"
@@ -83,13 +89,10 @@ class PurchaseOrdersController < ApplicationController
                 @po.update(budget_id: params[:po][:budget_id])
             end
             @po.update(po_authorized_amount: params[:po][:po_authorized_amount])
-            binding.pry
             redirect to "/budgets/#{@po.budget.id}"
         else
             flash[:message] = "PO Authorized Amount must be numbers!"
             redirect to "/purchase_order/edit/#{params[:id]}"
         end     
-  
     end
-
 end

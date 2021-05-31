@@ -14,13 +14,15 @@
         <%@budget.purchase_orders.each do |p|%>
     </tr>
         <th><%=p.po_number%></th>
-        <th><%=p.vendor.name%></th>
+        <th><%=p.vendor.name.capitalize%></th>
         <th><%=format_number(p.po_authorized_amount)%></th>
         <th><a href="/purchase_order/edit/<%=p.id%>">edit</a> or <a href="/purchase_order/delete/<%=p.id%>">delete</a></th>
         <%@open_po_sum += p.po_authorized_amount%>
     <tr>
      <%end%>
+    <tr>
         <th><a href="/purchase_order/new"> Add PO</a></th>
+        <th></th>
         <th></th>
         <th></th>
     </tr>
