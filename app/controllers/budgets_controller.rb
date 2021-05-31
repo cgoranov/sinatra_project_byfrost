@@ -30,6 +30,30 @@ class BudgetsController < ApplicationController
         end
     end
 
+    get '/budgets/edit/:id' do
+        if logged_in?
+            @budget = Budget.find_by(id: params[:id])
+            erb :'budgets/edit'
+        else
+            redirect to 'user/login'
+        end
+    end
+
+    patch '/budgets/edit/:id' do
+        @budget = Budget.find_by(id: params[:id])
+        if valid_number?(params[:budget][:target])
+            if params[:budget][:target] == "" || params[:budget][:name] == ""
+                flash[:message] = "Must input value for name and target."
+                redirect to "/budgets/edit/#{@budget.id}"
+            else
+                @budget.update(name: params[:budget][:name].downcase, target: params[:budget][:target])
+                redirect to "/budgets/#{@budget.id}"
+            end
+        else
+            redirect to "/budgets/edit/#{@budget.id}"
+        end
+    end
+
     get '/budgets/:id' do
         if logged_in?
             @budget = Budget.find_by(id: params[:id])

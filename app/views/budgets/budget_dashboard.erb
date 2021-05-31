@@ -46,7 +46,11 @@
         <th><%=format_number(@budget.target - @open_po_sum)%></th>
     </tr>
 </table>
-
+<br>
+<br>
+<a href="/budgets/edit/<%=@budget.id%>">Edit Budget</a>
+<br>
+<br>
 <form method="post" action="/budgets/<%=@budget.id%>">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
 <input type="submit" value="Delete Budget">
