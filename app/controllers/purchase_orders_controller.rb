@@ -33,7 +33,7 @@ class PurchaseOrdersController < ApplicationController
                     @po.update(vendor_id: params[:po][:vendor_id])
                 end
                 if params[:po][:budget_id] == ""
-                    new_budget = Budget.create(params[:budget][:name].downcase)
+                    new_budget = Budget.create(name: params[:budget][:name].downcase, target: params[:budget][:target])
                     @po.budget = new_budget
                 end
                 if params[:budget][:name] == ""
@@ -96,7 +96,7 @@ class PurchaseOrdersController < ApplicationController
         end     
     end
 
-    get '/purchase_order/delete/:id' do
+    delete '/purchase_order/:id' do
         if logged_in?
             @po = PurchaseOrder.find_by(id: params[:id])
             budget = @po.budget
