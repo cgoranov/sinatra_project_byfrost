@@ -16,8 +16,8 @@
         <th><%=p.po_number%></th>
         <th><%=p.vendor.name.capitalize%></th>
         <th><%=format_number(p.po_authorized_amount)%></th>
-        <th><a href="/purchase_order/edit/<%=p.id%>">edit</a> or 
-            <form method="post" action="/purchase_order/<%=p.id%>">
+        <th><a href="/purchase_orders/edit/<%=p.id%>">edit</a> or 
+            <form method="post" action="/purchase_orders/<%=p.id%>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">
             </form></th>
@@ -25,7 +25,7 @@
     <tr>
      <%end%>
     <tr>
-        <th><a href="/purchase_order/new"> Add PO</a></th>
+        <th><a href="/purchase_orders/new"> Add PO</a></th>
         <th></th>
         <th></th>
         <th></th>

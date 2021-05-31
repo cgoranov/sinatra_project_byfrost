@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
     get '/budgets' do
         if logged_in?
             @user = current_user
-            erb :'budgets/show_all_budgets'
+            erb :'budgets/index'
         else
             redirect to '/'
         end
@@ -12,7 +12,7 @@ class BudgetsController < ApplicationController
 
     get '/budgets/new' do
         if logged_in?
-            erb :'budgets/new_budget'
+            erb :'budgets/new'
         else
             redirect to '/login'
         end
@@ -58,7 +58,7 @@ class BudgetsController < ApplicationController
         if logged_in?
             @budget = Budget.find_by(id: params[:id])
             @open_po_sum = 0
-            erb :'budgets/budget_dashboard'
+            erb :'budgets/show'
         else
             redirect to '/user/login'
         end
