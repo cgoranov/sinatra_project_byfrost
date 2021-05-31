@@ -95,4 +95,16 @@ class PurchaseOrdersController < ApplicationController
             redirect to "/purchase_order/edit/#{params[:id]}"
         end     
     end
+
+    get '/purchase_order/delete/:id' do
+        if logged_in?
+            @po = PurchaseOrder.find_by(id: params[:id])
+            budget = @po.budget
+            @po.destroy
+            redirect to "/budgets/#{budget.id}"
+        else
+            redirect to '/user/login'
+        end
+    end
+
 end

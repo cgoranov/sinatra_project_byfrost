@@ -39,5 +39,15 @@ class BudgetsController < ApplicationController
             redirect to '/user/login'
         end
     end
+
+    delete '/budgets/:id' do
+        if logged_in?
+            @budget = Budget.find_by(id: params[:id])
+            @budget.destroy
+            redirect to '/budgets'
+        else
+            redirect to '/user/login'
+        end
+    end
     
 end
