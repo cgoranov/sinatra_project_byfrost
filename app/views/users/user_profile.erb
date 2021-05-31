@@ -7,6 +7,9 @@ Username: <%=@user.username%>
 <a href="/budgets">Your budgets</a>
 <br>
 <br>
-<a href="/user/delete">Delete Account & All Budgets</a>
+<form method="post" action="/user/delete">
+<input id="hidden" type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete Profile">
+</form>
 
 

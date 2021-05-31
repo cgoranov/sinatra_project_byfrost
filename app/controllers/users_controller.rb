@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/user/delete' do
+    delete '/user/delete' do
         if logged_in?
             current_user.destroy
             redirect to '/'
