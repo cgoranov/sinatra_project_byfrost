@@ -56,16 +56,35 @@ class PurchaseOrdersController < ApplicationController
 
     patch '/purchase_order/edit/:id' do 
         @po = PurchaseOrder.find_by(id: params[:id])
+        binding.pry
         if valid_number?(params[:po][:po_authorized_amount]) 
-            @po.update(po_authorized_amount: params[:po][:po_authorized_amount])
-            if params[:vendor][:name] != "" && Vendor.all.any? {|v| v.name == params[:vendor][:name].downcase}
-                new_vendor = Vendor.create(name: params[:vendor][:name])
+            if Vendor.all.any? {|v| v.name == params[:vendor][:name].downcase}
+                flash[:message] = "Vendor name already taken, please create another one!"
+                redirect to "/purchase_order/edit/#{params[:id]}"
+            elsif params[:vendor][:name] != "" 
+                new_vendor = Vendor.create(name: params[:vendor][:name].downcase)
                 @po.vendor = new_vendor
                 @po.save
-            else
-                @po.update(params[:po][:vendor_id])
             end
-            
+            if params[:vendor][:name] == "" 
+                @po.update(vendor_id: params[:po][:vendor_id])
+            end
+            if Budget.all.any? {|b| b.name == params[:budget][:name].downcase}
+                flash[:message] = "Budget name already taken, please create another one!"
+                redirect to "/purchase_order/edit/#{params[:id]}"
+            elsif params[:budget][:name] != "" 
+                new_budget = Budget.create(name: params[:budget][:name].downcase, target: params[:budget][:target])
+                @po.budget = new_budget
+                @po.save
+                current_user.budgets << new_budget
+                current_user.save
+            end 
+            if params[:budget][:name] == "" 
+                @po.update(budget_id: params[:po][:budget_id])
+            end
+            @po.update(po_authorized_amount: params[:po][:po_authorized_amount])
+            binding.pry
+            redirect to "/budgets/#{@po.budget.id}"
         else
             flash[:message] = "PO Authorized Amount must be numbers!"
             redirect to "/purchase_order/edit/#{params[:id]}"
