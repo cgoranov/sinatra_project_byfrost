@@ -2,20 +2,14 @@
 class BudgetsController < ApplicationController
 
     get '/budgets' do
-        if logged_in?
-            @user = current_user
-            erb :'budgets/index'
-        else
-            redirect to '/'
-        end
+        redirect_if_not_loggedin       
+        @user = current_user
+        erb :'budgets/index'
     end
 
     get '/budgets/new' do
-        if logged_in?
-            erb :'budgets/new'
-        else
-            redirect to '/login'
-        end
+        redirect_if_not_loggedin
+        erb :'budgets/new'
     end
 
     post '/budgets' do
@@ -31,12 +25,9 @@ class BudgetsController < ApplicationController
     end
 
     get '/budgets/edit/:id' do
-        if logged_in?
-            @budget = Budget.find_by(id: params[:id])
-            erb :'budgets/edit'
-        else
-            redirect to 'user/login'
-        end
+        redirect_if_not_loggedin
+        @budget = Budget.find_by(id: params[:id])
+        erb :'budgets/edit'
     end
 
     patch '/budgets/edit/:id' do
@@ -55,23 +46,17 @@ class BudgetsController < ApplicationController
     end
 
     get '/budgets/:id' do
-        if logged_in?
-            @budget = Budget.find_by(id: params[:id])
-            @open_po_sum = 0
-            erb :'budgets/show'
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        @budget = Budget.find_by(id: params[:id])
+        @open_po_sum = 0
+        erb :'budgets/show'
     end
 
     delete '/budgets/:id' do
-        if logged_in?
-            @budget = Budget.find_by(id: params[:id])
-            @budget.destroy
-            redirect to '/budgets'
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        @budget = Budget.find_by(id: params[:id])
+        @budget.destroy
+        redirect to '/budgets'
     end
     
 end

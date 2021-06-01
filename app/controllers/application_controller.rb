@@ -59,6 +59,14 @@ class ApplicationController < Sinatra::Base
             sc_array = special_characters.split("")
             sc_array.any? {|c| password.include?(c)} && password.length.between?(6, 10) 
         end
+    
+        def redirect_if_not_loggedin
+            if !logged_in?
+                erb :'users/log_in'
+            end
+        end
+    
     end
+
 
 end

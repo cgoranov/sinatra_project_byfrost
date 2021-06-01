@@ -2,11 +2,8 @@
 class PurchaseOrdersController < ApplicationController
     
     get '/purchase_orders/new' do
-        if logged_in?
-            erb :'purchase_orders/new'
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        erb :'purchase_orders/new'
     end
 
     post '/purchase_orders' do
@@ -53,12 +50,9 @@ class PurchaseOrdersController < ApplicationController
     end
 
     get '/purchase_orders/edit/:id' do
-        if logged_in?
-            @po = PurchaseOrder.find_by(id: params[:id])
-            erb :'purchase_orders/edit'
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        @po = PurchaseOrder.find_by(id: params[:id])
+        erb :'purchase_orders/edit'
     end
 
     patch '/purchase_orders/:id' do 
@@ -97,14 +91,11 @@ class PurchaseOrdersController < ApplicationController
     end
 
     delete '/purchase_orders/:id' do
-        if logged_in?
-            @po = PurchaseOrder.find_by(id: params[:id])
-            budget = @po.budget
-            @po.destroy
-            redirect to "/budgets/#{budget.id}"
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        @po = PurchaseOrder.find_by(id: params[:id])
+        budget = @po.budget
+        @po.destroy
+        redirect to "/budgets/#{budget.id}"
     end
 
 end

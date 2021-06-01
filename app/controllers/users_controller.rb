@@ -2,12 +2,12 @@
 class UsersController < ApplicationController
 
     get '/user/new' do
-       if logged_in?
+        if logged_in?
             user = User.find_by(id: session[:user_id])
             redirect to "/user/#{user.slug}"
-       else
+        else
             erb :'users/new'
-       end
+        end
     end
 
     post '/user' do
@@ -28,11 +28,11 @@ class UsersController < ApplicationController
     end
 
     get '/user/login' do 
-        if !logged_in?
-            erb :'users/log_in'
-        else
+        if logged_in?
             user = User.find_by(id: session[:user_id])
             redirect to "/user/#{user.slug}"
+        else
+            erb :'users/log_in'
         end
     end
 
@@ -49,31 +49,21 @@ class UsersController < ApplicationController
     end
 
     get '/user/logout' do 
-        if logged_in?
-            session.clear
-            redirect to '/'
-        else
-            redirect to '/user/login'
-        end
+        redirect_if_not_loggedin
+        session.clear
+        redirect to '/'
     end
 
     delete '/user/delete' do
-        if logged_in?
-            current_user.destroy
-            redirect to '/'
-        else
-            redirect to "/user/login"
-        end
+        redirect_if_not_loggedin
+        current_user.destroy
+        redirect to '/'
     end
 
     get '/user/:slug' do
-        if logged_in?
-            @user = User.find_by_slug(params[:slug])
-            erb :'users/user_profile'
-        else
-            redirect to "/user/login"
-        end
+        redirect_if_not_loggedin
+        @user = User.find_by_slug(params[:slug])
+        erb :'users/user_profile'
     end
 
-   
 end
