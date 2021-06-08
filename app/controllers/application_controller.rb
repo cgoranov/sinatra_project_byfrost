@@ -53,7 +53,7 @@ class ApplicationController < Sinatra::Base
         def valid_password?(password)
             special_characters = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
             sc_array = special_characters.split("")
-            sc_array.any? {|c| password.include?(c)} && password.length.between?(6, 10) 
+            sc_array.any? {|c| password.include?(c)} 
         end
     
         def redirect_if_not_loggedin

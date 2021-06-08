@@ -1,6 +1,13 @@
 Edit Budget
 <br>
-<%=flash[:message]%>
+<br>
+<%if !!@errors%>
+    <%@errors.each do |e|%>
+    <br>
+    <%=e.capitalize%>
+    <br>
+    <%end%>
+<%end%>
 <br>
 <form method="post" action="/budgets/<%=@budget.id%>">
 <input id="hidden" type="hidden" name="_method" value="patch">
