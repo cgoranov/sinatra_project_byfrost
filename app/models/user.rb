@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
     has_many :purchase_orders, through: :budgets
     has_secure_password
     validates :username, :password, presence: true
+    validates :username, length: {maximum: 8}
+    validates :password, length: {maximum: 8}
 
     def slug 
         self.username.gsub("-", " ")

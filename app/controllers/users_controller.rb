@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     get '/signup' do
         if logged_in?
-            redirect to "/#{current_user.slug}"
+            redirect to "/users/#{current_user.slug}"
         else
             erb :'users/signup'
         end
@@ -12,10 +12,10 @@ class UsersController < ApplicationController
     post '/signup' do
         redirect_if_not_loggedin
         user = User.new(username: params[:username].downcase, password: params[:password])
-        if user.valid? && valid_password?(params[:password]) && params[:username].length <= 8 && params[:username].length <= 8 && !User.all.any? {|u| u.username == params[:username].downcase}
+        if user.valid? && valid_password?(params[:password])&& !User.all.any? {|u| u.username == params[:username].downcase}
             user.save
             session[:user_id] = user.id
-            redirect to "/#{user.slug}"
+            redirect to "/users/#{user.slug}"
         else
             if user.valid?
                 @errors = "Invalid username or password. Username might be taken!"
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     get '/login' do 
         if logged_in?
             user = User.find_by(id: session[:user_id])
-            redirect to "/#{user.slug}"
+            redirect to "users/#{user.slug}"
         else
             erb :'users/login'
         end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         if !!user && !!user.authenticate(params[:password])
             session[:user_id] = user.id
             flash[:message] = nil
-            redirect to "/#{user.slug}"
+            redirect to "users/#{user.slug}"
         else
             flash[:message] = "Invalid Username or Password. Please try again!"
             redirect to '/login'

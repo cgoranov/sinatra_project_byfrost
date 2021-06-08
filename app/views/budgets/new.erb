@@ -6,9 +6,12 @@ Create your new budget!
         <%@errors.each do |e|%>
         <br>
         <%=e.capitalize%>
+        <br>
         <%end%>
     <%else%>
+        <br>
         <%=@errors%>
+        <br>
     <%end%>
 <%end%>
 <br>

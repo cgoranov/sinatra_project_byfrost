@@ -4,5 +4,6 @@ class Budget < ActiveRecord::Base
     has_many :purchase_orders, dependent: :destroy
     has_many :vendors, through: :purchase_orders
     validates :name, :target, presence: true
+    validates :target, format: {with: /\D/, messsage: "must be a number"}
 
 end
