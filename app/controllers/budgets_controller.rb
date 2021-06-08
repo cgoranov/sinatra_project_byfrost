@@ -54,7 +54,7 @@ class BudgetsController < ApplicationController
         end
     end
 
-    delete '/budgets/:id/delete' do
+    delete '/budgets/:id' do
         redirect_if_not_loggedin
         @budget = Budget.find_by(id: params[:id])
         current_user_budget?

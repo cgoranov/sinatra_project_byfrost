@@ -15,7 +15,6 @@ Create new purchase order!
 <br>
  <label>Choose a vendor:</label>
   <select id="list_of_vendors" name="po[vendor_id]">
-    <option value=<%=nil%>></option>
     <%Vendor.all.each do |v|%>
     <option value="<%=v.id%>"><%=v.name.capitalize%></option>
     <%end%>
@@ -24,24 +23,9 @@ Create new purchase order!
 <br>
 <label>Choose a budget to assign to:</label>
   <select id="list_of_budgets" name="po[budget_id]">
-    <option value=""></option>
-    <%Budget.all.each do |b|%>
+    <%current_user.budgets.each do |b|%>
     <option value="<%=b.id%>"><%=b.name.capitalize%></option>
     <%end%>
   </select>
-<br>
-<br>
-Create new vendor to assign to PO:
-<br>
-<label>Vendor Name:<input type="text" id="new_vendor" name="vendor[name]"></label>
-<br>
-<br>
-Create new budget to assign to PO:
-<br>
-<label>Budget Name:<input type="text" id="new_budget_name" name="budget[name]"></label>
-<br>
-<label>Budget Target:<input type="text" id="new_budget_target" name="budget[target]"></label>
-<br>
-<br>
 <input type="submit" value="Create Purchase Order!">
 </form>
