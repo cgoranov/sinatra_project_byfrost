@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     has_many :budgets, dependent: :destroy
     has_many :purchase_orders, through: :budgets
     has_secure_password
+    validates :username, :password, presence: true
 
     def slug 
         self.username.gsub("-", " ")

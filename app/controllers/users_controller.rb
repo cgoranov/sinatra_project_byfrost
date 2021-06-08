@@ -10,19 +10,12 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && !User.all.any? {|u| u.username == params[:username].downcase}
-            user = User.create(username: params[:username].downcase, password: params[:password])
-            session[:user_id] = user.id
-            flash[:messsage] = nil
-            redirect to "/user/#{user.slug}"
+        user = User.new(params)
+        if user.valid?
+        
         else
-            if valid_password?(params[:password]) && params[:username].length.between?(6, 10) && User.all.any? {|u| u.username == params[:username].downcase}
-                flash[:message] = "Username already taken! Please try again!"
-                erb :'users/new'
-            else
-                flash[:message] = "Username and password did not meet criteria. Please try again!"
-                erb :'users/new'
-            end 
+            @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            erb :'users/signup'
         end
     end
 
