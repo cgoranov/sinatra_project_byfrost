@@ -20,6 +20,8 @@ Create new purchase order!
     <%end%>
   </select>
 <br>
+<p> If you do not see a vendor, you can add one <a href="/vendors/new">here</a></p>
+<br>
 <br>
 <label>Choose a budget to assign to:</label>
   <select id="list_of_budgets" name="po[budget_id]">
@@ -27,5 +29,7 @@ Create new purchase order!
     <option value="<%=b.id%>"><%=b.name.capitalize%></option>
     <%end%>
   </select>
+  <br>
+  <br>
 <input type="submit" value="Create Purchase Order!">
 </form>
