@@ -12,13 +12,14 @@ class UsersController < ApplicationController
     post '/signup' do
         redirect_if_not_loggedin
         user = User.new(username: params[:username].downcase, password: params[:password])
-        if user.valid? && valid_password?(params[:password])&& !User.all.any? {|u| u.username == params[:username].downcase}
+        binding.pry
+        if user.valid? && valid_password?(params[:password])
             user.save
             session[:user_id] = user.id
             redirect to "/users/#{user.slug}"
         else
-            if user.valid?
-                @errors = "Invalid username or password. Username might be taken!"
+            if !valid_password?(params[:password]) 
+                @errors = "Invalid password!"
                 erb :'users/signup'
             else
                 @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}

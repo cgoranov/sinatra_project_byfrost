@@ -20,7 +20,7 @@ class BudgetsController < ApplicationController
             current_user.budgets << @budget
             current_user.save
             redirect to '/budgets'
-        elsif  @budget.valid? && Budget.all.any? {|b| b.name == params[:name].downcase}
+        elsif  Budget.all.any? {|b| b.name == params[:name].downcase}
             @errors = "Budget name already in use!"
             erb :'/budgets/new'
         else
