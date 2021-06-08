@@ -9,13 +9,18 @@
 <br>
 <input type="submit" value="Sign me up!">
 </form>
-<%if !@errors.empty?%>
-<%@errors.each do |e|%>
-<br>
-<%=e.capitalize%>
+<%if !!@errors%>
+    <%if @errors.kind_of?(Array)%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <%end%>
+    <%else%>
+        <%=@errors%>
+    <%end%>
 <%end%>
-<%end%>
+
 <ul>
-    <li> Username must be between 7 characters. Not case sensitive.
-    <li> Password must be between 7 digits and contain at least one special character - ex. !*&^%$#`
+    <li> Username must be up to 8 characters. Not case sensitive.
+    <li> Password must be up to 8 digits and contain at least one special character - ex. !*&^%$#`
 </ul>

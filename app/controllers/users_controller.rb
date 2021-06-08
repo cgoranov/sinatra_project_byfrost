@@ -10,12 +10,20 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        user = User.new(params)
-        if user.valid?
-        
+        redirect_if_not_loggedin
+        user = User.new(username: params[:username].downcase, password: params[:password])
+        if user.valid? && valid_password?(params[:password]) && params[:username].length <= 8 && params[:username].length <= 8 && !User.all.any? {|u| u.username == params[:username].downcase}
+            user.save
+            session[:user_id] = user.id
+            redirect to "/#{user.slug}"
         else
-            @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
-            erb :'users/signup'
+            if user.valid?
+                @errors = "Invalid username or password. Username might be taken!"
+                erb :'users/signup'
+            else
+                @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+                erb :'users/signup'
+            end
         end
     end
 
@@ -52,10 +60,18 @@ class UsersController < ApplicationController
         redirect to '/'
     end
 
-    get '/:slug' do
+    get '/users/:slug' do
         redirect_if_not_loggedin
         @user = User.find_by_slug(params[:slug])
+        correct_user?
         erb :'users/profile'
     end
+
+    private
+        def correct_user?
+            if current_user != @user
+                redirect to '/login'
+            end
+        end
 
 end

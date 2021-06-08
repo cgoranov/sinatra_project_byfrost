@@ -7,6 +7,10 @@ Username: <%=@user.username%>
 <a href="/budgets">Your budgets</a>
 <br>
 <br>
+<form method="POST" action="/logout">
+<input type="submit" value="Log Out">
+</form>
+<br>
 <form method="post" action="/delete">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
 <input type="submit" value="Delete Profile">

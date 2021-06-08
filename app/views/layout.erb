@@ -6,10 +6,7 @@
     <body style="background: Pink">
     <h2><a href="/">Home</a></h2>
     <%if logged_in?%>
-    <h2><a href='/<%=current_user.slug%>'>Profile</a></h2>
-    <form method="POST" action="/logout">
-    <input type="submit" value="Log Out">
-    </form>
+    <h2><a href='/users/<%=current_user.slug%>'>Profile</a></h2>
     <%end%>
 
     <%=yield%>

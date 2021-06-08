@@ -1,7 +1,16 @@
 
 Create your new budget!
 <br>
-<%=flash[:message]%>
+<%if !!@errors%>
+    <%if @errors.kind_of?(Array)%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <%end%>
+    <%else%>
+        <%=@errors%>
+    <%end%>
+<%end%>
 <br>
 <form method="post" action="/budgets">
 <label>Budget Name:<input type="text" id="name" name="name"></label>

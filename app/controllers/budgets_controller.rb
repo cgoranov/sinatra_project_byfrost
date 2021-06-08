@@ -13,14 +13,18 @@ class BudgetsController < ApplicationController
     end
 
     post '/budgets' do
-        if valid_number?(params[:target])  
-            new_budget = Budget.create(name: params[:name].downcase, target: params[:target])
-            current_user.budgets << new_budget
+        redirect_if_not_loggedin
+        @budget = Budget.new(name: params[:name].downcase, target: params[:target])
+        if @budget.valid? && valid_number?(params[:target]) && !Budget.all.any? {|b| b.name == params[:name].downcase}
+            @budget.save
+            current_user.budgets << @budget
             current_user.save
             redirect to '/budgets'
+        elsif @budget.valid?
+            @error = "Target must a number only!"
         else
-            flash[:message] = "Not a valid Target. Please use only numbers!"
-            redirect to '/budgets/new'
+            @errors = @budget.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            erb :'/budgets/new'
         end
     end
 
