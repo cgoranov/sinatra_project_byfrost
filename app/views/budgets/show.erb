@@ -25,7 +25,7 @@
     <tr>
      <%end%>
     <tr>
-        <th><a href="/purchase_orders/new"> Add PO</a></th>
+        <th><a href="/purchase_orders/new">Add PO</a></th>
         <th></th>
         <th></th>
         <th></th>
@@ -33,10 +33,10 @@
     <tr>
         <th>Total Open PO Project Spend</th>
         <th></th>
-        <th><%= format_number(@open_po_sum) %></th>
+        <th><%=format_number(@open_po_sum)%></th>
     </tr>
     <tr>
-        <th><%=@budget.name.capitalize%> Target</th>
+        <th><%=@budget.name.capitalize%>Target</th>
         <th></th>
         <th><%= format_number(@budget.target) %></th>
     </tr>

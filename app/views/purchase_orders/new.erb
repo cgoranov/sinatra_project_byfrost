@@ -3,8 +3,10 @@
 Create new purchase order!
 <br>
 <br>
-<%=flash[:message]%>
+<%@errors.each do |e|%>
+<%=e%>
 <br>
+<%end%>
 <br>
 <form method="post" action="/purchase_orders">
 <label>Purchase Order Number:<input type="text" id="new_po_number" name="po[po_number]"></label>
@@ -21,14 +23,14 @@ Create new purchase order!
   </select>
 <br>
 <p> If you do not see a vendor, you can add one <a href="/vendors/new">here</a></p>
-<br>
-<br>
-<label>Choose a budget to assign to:</label>
+<label>Assign to:
   <select id="list_of_budgets" name="po[budget_id]">
     <%current_user.budgets.each do |b|%>
     <option value="<%=b.id%>"><%=b.name.capitalize%></option>
     <%end%>
   </select>
+  Budget
+  </label>
   <br>
   <br>
 <input type="submit" value="Create Purchase Order!">

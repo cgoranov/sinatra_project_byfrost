@@ -7,45 +7,13 @@ class PurchaseOrdersController < ApplicationController
     end
 
     post '/purchase_orders' do
-       if valid_number?(params[:po][:po_number]) && valid_number?(params[:po][:po_authorized_amount]) && !PurchaseOrder.all.any? {|p| p.po_number == params[:po][:po_number].to_i}
-            if params[:po][:vendor_id] == "" && params[:vendor][:name] == ""       
-                flash[:message] = "Either add or assign vendor to PO!"
-                redirect to '/purchase_orders/new'
-            elsif params[:po][:budget_id] == "" && params[:budget][:name] == ""
-                flash[:message] = "Either add or assign budget to PO!"
-                redirect to '/purchase_orders/new'
-            elsif params[:po][:vendor_id] != "" && params[:vendor][:name] != ""       
-                flash[:message] = "Please add or assign ONE vendor to PO!"
-                redirect to '/purchase_orders/new'
-            elsif params[:po][:budget_id] != "" && params[:budget][:name] != ""
-                flash[:message] = "Please add or assign ONE budget to PO!"
-                redirect to '/purchase_orders/new'
-            else
-                @po = PurchaseOrder.create(params[:po])
-                if params[:po][:vendor_id] == ""
-                    new_vendor = Vendor.create(name: params[:vendor][:name].downcase)
-                    @po.vendor = new_vendor
-                end
-                if params[:vendor][:name] == ""
-                    @po.update(vendor_id: params[:po][:vendor_id])
-                end
-                if params[:po][:budget_id] == ""
-                    new_budget = Budget.create(name: params[:budget][:name].downcase, target: params[:budget][:target])
-                    @po.budget = new_budget
-                end
-                if params[:budget][:name] == ""
-                    @po.update(budget_id: params[:po][:budget_id])
-                end
-                redirect to "/budgets/#{@po.budget.id}"
-            end
+        @new_po = PurchaseOrder.new(params[:po])
+        if @new_po.valid?
+            @new_po.save
+            redirect to "/budgets/#{@new_po.budget.id}"
         else
-            if PurchaseOrder.all.any? {|p| p.po_number == params[:po][:po_number].to_i}
-                flash[:message] = "Cannot use existing PO number!"
-                redirect to '/purchase_orders/new'
-            else
-                flash[:message] = "PO Number and PO Authorized Amount must be numbers!"
-                redirect to '/purchase_orders/new'
-            end
+            @errors = @new_po.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            erb :'purchase_orders/new'
         end
     end
 
