@@ -1,10 +1,12 @@
 Edit Budget
 <br>
-<form method="post" action="/budgets/edit/<%=@budget.id%>">
+<form method="post" action="/budgets/<%=@budget.id%>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <label>Budget Name:<input id="edit_budget_name" type="text" name="budget[name]" value="<%=@budget.name.capitalize%>"></label>
 <br>
 <label>Budget Target:<input id="edit_budget_target" type="text" name="budget[target]" value=<%=@budget.target%>></label>
 <br>
+<%if current_user.budgets.include?(@budget)%>
 <input type="submit" name="Submit">
+<%end%>
 </form>

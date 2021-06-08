@@ -16,7 +16,7 @@
         <th><%=p.po_number%></th>
         <th><%=p.vendor.name.capitalize%></th>
         <th><%=format_number(p.po_authorized_amount)%></th>
-        <th><a href="/purchase_orders/edit/<%=p.id%>">edit</a> or 
+        <th><a href="/purchase_orders/<%=p.id%>/edit">edit</a> or 
             <form method="post" action="/purchase_orders/<%=p.id%>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">
@@ -48,10 +48,10 @@
 </table>
 <br>
 <br>
-<a href="/budgets/edit/<%=@budget.id%>">Edit Budget</a>
+<a href="/budgets/<%=@budget.id%>/edit">Edit Budget</a>
 <br>
 <br>
-<form method="post" action="/budgets/<%=@budget.id%>">
+<form method="post" action="/budgets/<%=@budget.id%>/delete">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
 <input type="submit" value="Delete Budget">
 </form>

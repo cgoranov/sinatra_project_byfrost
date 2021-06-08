@@ -49,7 +49,7 @@ class PurchaseOrdersController < ApplicationController
         end
     end
 
-    get '/purchase_orders/edit/:id' do
+    get '/purchase_orders/:id/edit' do
         redirect_if_not_loggedin
         @po = PurchaseOrder.find_by(id: params[:id])
         erb :'purchase_orders/edit'
@@ -90,7 +90,7 @@ class PurchaseOrdersController < ApplicationController
         end     
     end
 
-    delete '/purchase_orders/:id' do
+    delete '/purchase_orders/:id/delete' do
         redirect_if_not_loggedin
         @po = PurchaseOrder.find_by(id: params[:id])
         budget = @po.budget

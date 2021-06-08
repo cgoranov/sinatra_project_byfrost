@@ -24,18 +24,28 @@ class BudgetsController < ApplicationController
         end
     end
 
-    get '/budgets/edit/:id' do
+    get '/budgets/:id' do
         redirect_if_not_loggedin
         @budget = Budget.find_by(id: params[:id])
+        current_user_budget?
+        @open_po_sum = 0
+        erb :'budgets/show'
+    end
+
+    get '/budgets/:id/edit' do
+        redirect_if_not_loggedin
+        @budget = Budget.find_by(id: params[:id])
+        current_user_budget?
         erb :'budgets/edit'
     end
 
-    patch '/budgets/edit/:id' do
+    patch '/budgets/:id' do
         @budget = Budget.find_by(id: params[:id])
+        current_user_budget?
         if valid_number?(params[:budget][:target])
             if params[:budget][:target] == "" || params[:budget][:name] == ""
                 flash[:message] = "Must input value for name and target."
-                redirect to "/budgets/edit/#{@budget.id}"
+                redirect to "/budgets/#{@budget.id}/edit"
             else
                 @budget.update(name: params[:budget][:name].downcase, target: params[:budget][:target])
                 redirect to "/budgets/#{@budget.id}"
@@ -45,18 +55,19 @@ class BudgetsController < ApplicationController
         end
     end
 
-    get '/budgets/:id' do
+    delete '/budgets/:id/delete' do
         redirect_if_not_loggedin
         @budget = Budget.find_by(id: params[:id])
-        @open_po_sum = 0
-        erb :'budgets/show'
-    end
-
-    delete '/budgets/:id' do
-        redirect_if_not_loggedin
-        @budget = Budget.find_by(id: params[:id])
+        current_user_budget?
         @budget.destroy
         redirect to '/budgets'
     end
     
+    private
+        def current_user_budget?
+            if !current_user.budgets.include?(@budget)
+                redirect to '/budgets'
+            end
+        end
+
 end

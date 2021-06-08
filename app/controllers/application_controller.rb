@@ -65,8 +65,6 @@ class ApplicationController < Sinatra::Base
                 erb :'users/log_in'
             end
         end
-    
     end
-
 
 end
