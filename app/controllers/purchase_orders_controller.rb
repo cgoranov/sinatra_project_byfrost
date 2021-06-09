@@ -24,8 +24,18 @@ class PurchaseOrdersController < ApplicationController
     end
 
     patch '/purchase_orders/:id' do 
+        redirect_if_not_loggedin
         @po = PurchaseOrder.find_by(id: params[:id])
-        @edit = PurchaseOrder.new()
+        @edit = PurchaseOrder.new(params[:po])
+        @edit.valid?
+        if @edit.errors.details[:po_authorized_amount].empty? && @edit.errors.details[:vendor_id].empty? && @edit.errors.details[:budget_id].empty? 
+            @po.update(params[:po])
+            redirect to "/budgets/#{@po.budget.id}"
+        else
+            @edit.errors.messages.delete(:po_number)
+            @errors = @edit.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            erb :'purchase_orders/edit'
+        end
     end
 
     delete '/purchase_orders/:id/delete' do
