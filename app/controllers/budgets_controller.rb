@@ -20,7 +20,8 @@ class BudgetsController < ApplicationController
             current_user.save
             redirect to '/budgets'
         else
-            @errors = @budget.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            error_messages(@budget)
+            # @errors = @budget.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
             erb :'/budgets/new'
         end
     end
@@ -41,14 +42,16 @@ class BudgetsController < ApplicationController
     end
 
     patch '/budgets/:id' do
+        redirect_if_not_loggedin
         @budget = Budget.find_by(id: params[:id])
-        @edit = Budget.new(name: params[:budget][:name].downcase, target: params[:budget][:target])
         current_user_budget?
+        @edit = Budget.new(name: params[:budget][:name].downcase, target: params[:budget][:target])
         if @edit.valid?
             @budget.update(name: params[:budget][:name].downcase, target: params[:budget][:target])
             redirect to "/budgets/#{@budget.id}"
         else
-            @errors = @edit.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            error_messages(@edit)
+            # @errors = @edit.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
             erb :'budgets/edit'
         end
     end

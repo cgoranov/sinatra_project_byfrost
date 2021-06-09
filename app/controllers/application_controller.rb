@@ -25,6 +25,11 @@ class ApplicationController < Sinatra::Base
             !!current_user
         end
 
+        def error_messages(input)
+            @errors = input.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            return @errors
+        end
+
         def format_number(number)
             input = number.to_s
             if input.include?("-") && input.include?(".") 

@@ -13,7 +13,8 @@ class PurchaseOrdersController < ApplicationController
             @new_po.save
             redirect to "/budgets/#{@new_po.budget.id}"
         else
-            @errors = @new_po.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            error_messages(@new_po)
+            # @errors = @new_po.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
             erb :'purchase_orders/new'
         end
     end
@@ -36,7 +37,8 @@ class PurchaseOrdersController < ApplicationController
             redirect to "/budgets/#{@po.budget.id}"
         else
             @edit.errors.messages.delete(:po_number)
-            @errors = @edit.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            error_messages(@edit)
+            # @errors = @edit.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
             erb :'purchase_orders/edit'
         end
     end

@@ -21,7 +21,8 @@ class UsersController < ApplicationController
                 @errors = "Invalid password!"
                 erb :'users/signup'
             else
-                @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+                error_messages(@errors)
+                # @errors = user.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
                 erb :'users/signup'
             end
         end

@@ -10,13 +10,10 @@
 <input type="submit" value="Sign me up!">
 </form>
 <%if !!@errors%>
-    <%if @errors.kind_of?(Array)%>
-        <%@errors.each do |e|%>
-        <br>
-        <%=e.capitalize%>
-        <%end%>
-    <%else%>
-        <%=@errors%>
+    <%@errors.each do |e|%>
+    <br>
+    <%=e.capitalize%>
+    <br>
     <%end%>
 <%end%>
 

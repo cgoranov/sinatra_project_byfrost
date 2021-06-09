@@ -2,16 +2,10 @@
 Create your new budget!
 <br>
 <%if !!@errors%>
-    <%if @errors.kind_of?(Array)%>
-        <%@errors.each do |e|%>
-        <br>
-        <%=e.capitalize%>
-        <br>
-        <%end%>
-    <%else%>
-        <br>
-        <%=@errors%>
-        <br>
+    <%@errors.each do |e|%>
+    <br>
+    <%=e.capitalize%>
+    <br>
     <%end%>
 <%end%>
 <br>
