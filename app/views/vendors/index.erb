@@ -1,29 +1,31 @@
-Vendor Database
+
+<br>
+<a href="/budgets">Go to your budgets</a>
 <br>
 <br>
+<h2>Vendor Database</h2>
 <table>
     <tr>
         <th>Vendor Name</th>
         <th>Edit Vendor</th>
     </tr>
-    <tr>
         <%if !@vendors.empty?%>
             <%@vendors.each do |v|%>
-            <th>
+    <tr>
+        <th>
             <%=v.name.capitalize%>
-            </th>
-            <th>
+        </th>
+        <th>
             <a href="/vendors/<%=v.id%>/edit">edit</a> or 
             <form method="post" action="/vendors/<%=v.id%>">
                 <input id="hidden" type="hidden" name="_method" value="DELETE">
                 <input type="submit" value="Delete">
             </form>
-            </th>
-            <br>
+        </th>
+    </tr>
             <%end%>
         <%else%>
         <br>
         <%="No Vendors in database. Make a new purchase order to add a Vendor!"%>
         <%end%>
-    </tr>
 </table>

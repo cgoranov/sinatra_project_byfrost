@@ -1,31 +1,32 @@
 
-
+<a href="/budgets">Back to Your budgets</a>
+  <br>
+  <br>
 Create new purchase order!
-<br>
-<br>
+  <br>
 <%if !!@errors%>
 <%@errors.each do |e|%>
 <%=e.capitalize%>
-<br>
+  <br>
 <%end%>
 <%end%>
-<br>
+  <br>
 <form method="post" action="/purchase_orders">
-<label>Purchase Order Number:<input type="text" id="new_po_number" name="po[po_number]"></label>
-<br>
-<br>
-<label>Purchase Order Authorized Amount:<input type="text" id="new_po_authorized_amount" name="po[po_authorized_amount]"></label>
-<br>
-<br>
+  <label>Purchase Order Number:<input type="text" id="new_po_number" name="po[po_number]"></label>
+  <br>
+  <br>
+  <label>Purchase Order Authorized Amount:<input type="text" id="new_po_authorized_amount" name="po[po_authorized_amount]"></label>
+  <br>
+  <br>
  <label>Choose a vendor:</label>
   <select id="list_of_vendors" name="po[vendor_id]">
     <%Vendor.all.each do |v|%>
     <option value="<%=v.id%>"><%=v.name.capitalize%></option>
     <%end%>
   </select>
-<br>
-<p> If you do not see a vendor, you can add one <a href="/vendors/new">here</a></p>
-<label>Assign to:
+  <br>
+  <p> If you do not see a vendor, you can add one <a href="/vendors/new">here</a></p>
+  <label>Assign to:
   <select id="list_of_budgets" name="po[budget_id]">
     <%current_user.budgets.each do |b|%>
     <option value="<%=b.id%>"><%=b.name.capitalize%></option>
@@ -35,5 +36,5 @@ Create new purchase order!
   </label>
   <br>
   <br>
-<input type="submit" value="Create Purchase Order!">
+  <input type="submit" value="Create Purchase Order!">
 </form>

@@ -1,0 +1,18 @@
+Edit Vendor
+<br>
+<br>
+<%if !!@errors%>
+    <%@errors.each do |e|%>
+    <br>
+    <%=e.capitalize%>
+    <br>
+    <%end%>
+<%end%>
+<br>
+<form method="post" action="/vendors/<%=@vendor.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Vendor Name:<input id="edit_vendor_name" type="text" name="vendor[name]" value="<%=@vendor.name.capitalize%>"></label>
+    <%if logged_in?%>
+        <input type="submit" name="Submit">
+    <%end%>
+</form>

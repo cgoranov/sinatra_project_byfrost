@@ -16,11 +16,14 @@
         <th><%=p.po_number%></th>
         <th><%=p.vendor.name.capitalize%></th>
         <th><%=format_number(p.po_authorized_amount)%></th>
-        <th><a href="/purchase_orders/<%=p.id%>/edit">edit</a> or 
+        <th>
+            <a href="/purchase_orders/<%=p.id%>/edit">edit</a> 
+            or 
             <form method="post" action="/purchase_orders/<%=p.id%>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">
-            </form></th>
+            </form>
+        </th>
         <%@open_po_sum += p.po_authorized_amount%>
     <tr>
      <%end%>

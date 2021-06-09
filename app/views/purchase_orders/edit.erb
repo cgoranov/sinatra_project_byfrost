@@ -1,45 +1,27 @@
-
-
 Edit Purchase Order Number <%=@po.po_number%>
 <br>
 <br>
-<%=flash[:message]%>
-<br>
-<br>
 <form method="post" action="/purchase_orders/<%=@po.id%>">
-<input id="hidden" type="hidden" name="_method" value="patch">
-<label>PO Authorized Amount: <input type="text" id="edit_po_auth_amount" name="po[po_authorized_amount]" value="<%=@po.po_authorized_amount%>"></label>
-<br>
-<br>
-Change to another existing vendor (current vendor selected by default):
-<br>
-  <select id="list_of_vendors" name="po[vendor_id]">
-    <%Vendor.all.each do |v|%>
-    <option value="<%=v.id%>" <%="selected" if v.id == @po.vendor.id%>><%=v.name.capitalize%></option>
-    <%end%>
-  </select>
-  <br>
-<br>
-Change to another existing budget (current budget selected by default):
-<br>
-  <select id="list_of_budgets" name="po[budget_id]">
-    <%Budget.all.each do |b|%>
-    <option value="<%=b.id%>" <%="selected" if b.id == @po.budget.id%>><%=b.name.capitalize%></option>
-    <%end%>
-  </select>
-  <br>
-<br>
-Create new vendor to assign to PO:
-<br>
-<label>Vendor Name:<input type="text" id="new_vendor" name="vendor[name]"></label>
-<br>
-<br>
-Create new budget to assign to PO:
-<br>
-<label>Budget Name:<input type="text" id="new_budget_name" name="budget[name]"></label>
-<br>
-<label>Budget Target:<input type="text" id="new_budget_target" name="budget[target]"></label>
-<br>
-<br>
-<input type="submit" value="Update Purchase Order!">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>PO Authorized Amount: <input type="text" id="edit_po_auth_amount" name="po[po_authorized_amount]" value="<%=@po.po_authorized_amount%>"></label>
+    <br>
+    Change to another existing vendor (current vendor selected by default):
+    <br>
+    <select id="list_of_vendors" name="po[vendor_id]">
+      <%Vendor.all.each do |v|%>
+      <option value="<%=v.id%>" <%="selected" if v.id == @po.vendor.id%>><%=v.name.capitalize%></option>
+      <%end%>
+    </select>
+    <br>
+    <p> Add a vendor <a href="/vendors/new">here</a></p>
+    Change to another existing budget (current budget selected by default):
+    <br>
+    <select id="list_of_budgets" name="po[budget_id]">
+      <%Budget.all.each do |b|%>
+      <option value="<%=b.id%>" <%="selected" if b.id == @po.budget.id%>><%=b.name.capitalize%></option>
+      <%end%>
+    </select>
+    <br>
+    <br>
+    <input type="submit" value="Update Purchase Order!">
 </form>
