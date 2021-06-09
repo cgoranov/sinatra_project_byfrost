@@ -3,7 +3,6 @@ class BudgetsController < ApplicationController
 
     get '/budgets' do
         redirect_if_not_loggedin       
-        @user = current_user
         erb :'budgets/index'
     end
 

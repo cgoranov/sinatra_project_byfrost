@@ -4,8 +4,8 @@ Your Budgets
 <br>
 <a href="/budgets/new">Add new budget +</a>
 <br>
-<%if !@user.budgets.empty?%>
-    <%@user.budgets.each do |b|%>
+<%if !current_user.budgets.empty?%>
+    <%current_user.budgets.each do |b|%>
     <br>
     <a href="/budgets/<%=b.id%>"><%="#{b.name.capitalize} budget"%></a>
     <br>

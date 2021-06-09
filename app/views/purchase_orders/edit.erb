@@ -17,7 +17,7 @@ Edit Purchase Order Number <%=@po.po_number%>
     Change to another existing budget (current budget selected by default):
     <br>
     <select id="list_of_budgets" name="po[budget_id]">
-      <%Budget.all.each do |b|%>
+      <%current_user.budgets.each do |b|%>
       <option value="<%=b.id%>" <%="selected" if b.id == @po.budget.id%>><%=b.name.capitalize%></option>
       <%end%>
     </select>
