@@ -1,6 +1,17 @@
 <br>
 <h2>Sign up</h2>
 <br>
+<%if !!@errors%>
+    <%if @errors.kind_of?(Array)%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <br>
+        <%end%>
+    <%else%>
+        <%=@errors%>
+    <%end%>
+<%end%>
 <form method="post" action="/signup">
 <label>Username: <input type="text" id="sign_up_username" name="username"></label>
 <br>
@@ -9,13 +20,6 @@
 <br>
 <input type="submit" value="Sign me up!">
 </form>
-<%if !!@errors%>
-    <%@errors.each do |e|%>
-    <br>
-    <%=e.capitalize%>
-    <br>
-    <%end%>
-<%end%>
 
 <ul>
     <li> Username must be up to 8 characters. Not case sensitive.

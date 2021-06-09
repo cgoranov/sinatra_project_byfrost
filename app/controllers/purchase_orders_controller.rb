@@ -8,7 +8,6 @@ class PurchaseOrdersController < ApplicationController
 
     post '/purchase_orders' do
         @new_po = PurchaseOrder.new(params[:po])
-        current_user_po?(@po)
         if @new_po.valid?
             @new_po.save
             redirect to "/budgets/#{@new_po.budget.id}"
@@ -43,7 +42,7 @@ class PurchaseOrdersController < ApplicationController
         end
     end
 
-    delete '/purchase_orders/:id/delete' do
+    delete '/purchase_orders/:id' do
         redirect_if_not_loggedin
         @po = PurchaseOrder.find_by(id: params[:id])
         current_user_po?(@po)
@@ -54,7 +53,7 @@ class PurchaseOrdersController < ApplicationController
 
     private
         def current_user_po?(po)
-            if !po.budget.user == current_user 
+            if po.budget.user != current_user 
                 redirect to '/budgets'
             end
         end

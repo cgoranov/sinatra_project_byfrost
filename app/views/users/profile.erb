@@ -1,7 +1,9 @@
 Your Profile
 <br>
 <br>
+<%if logged_in?%>
 Username: <%=@user.username%>
+<%end%>
 <br>
 <br>
 <a href="/budgets">Your budgets</a>
