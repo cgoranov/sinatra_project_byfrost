@@ -1,6 +1,13 @@
 Create Vendor
-<form method="post" action="/budgets">
-<label>Budget Name:<input type="text" id="name" name="name"></label>
-<label>Budget Target:<input type="text" id="target" name="target"></label>
-<input type="submit" value="Create My Budget!">
+<br>
+<%if !!@errors%>
+    <%@errors.each do |e|%>
+    <%=e.capitalize%>
+    <br>
+    <%end%>
+<%end%>
+<br>
+<form method="post" action="/vendors">
+<label>Vendor Name:<input type="text" id="name" name="name"></label>
+<input type="submit" value="Create Vendor">
 </form>

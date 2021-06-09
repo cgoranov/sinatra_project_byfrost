@@ -6,7 +6,16 @@ class VendorsController < ApplicationController
         erb :'vendors/new'
     end
 
-    
-
-    
+    post '/vendors' do
+        redirect_if_not_loggedin
+        @new_vendor = Vendor.new(name: params[:name].downcase)
+        if @new_vendor.valid?
+            @new_vendor.save
+            redirect to '/purchase_orders/new'
+        else
+            @errors = @new_vendor.errors.messages.collect {|k, v| "#{k.to_s} #{v[0]}"}
+            erb :'vendors/new'
+        end
+    end
+  
 end

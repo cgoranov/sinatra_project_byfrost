@@ -3,9 +3,11 @@
 Create new purchase order!
 <br>
 <br>
+<%if !!@errors%>
 <%@errors.each do |e|%>
-<%=e%>
+<%=e.capitalize%>
 <br>
+<%end%>
 <%end%>
 <br>
 <form method="post" action="/purchase_orders">
