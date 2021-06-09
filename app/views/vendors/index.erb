@@ -1,0 +1,13 @@
+Vendor Database
+<br>
+<br>
+<%if !@vendors.empty?%>
+    <%@vendors.each do |v|%>
+    <br>
+    <%=v.name.capitalize%><a href="/vendors/<%=v.id%>">edit</a>
+    <br>
+    <%end%>
+<%else%>
+    <br>
+    <%="No Vendors in database. Make a new purchase order to add a Vendor!"%>
+<%end%>

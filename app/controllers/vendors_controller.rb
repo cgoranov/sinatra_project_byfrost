@@ -1,6 +1,12 @@
 
 class VendorsController < ApplicationController
 
+    get '/vendors' do
+        redirect_if_not_loggedin
+        @vendors = Vendor.all
+        erb :'vendors/index'
+    end
+
     get '/vendors/new' do
         redirect_if_not_loggedin
         erb :'vendors/new'
