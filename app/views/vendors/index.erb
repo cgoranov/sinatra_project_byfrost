@@ -1,10 +1,15 @@
 Vendor Database
 <br>
 <br>
+by name:
 <%if !@vendors.empty?%>
     <%@vendors.each do |v|%>
     <br>
-    <%=v.name.capitalize%><a href="/vendors/<%=v.id%>">edit</a>
+    <%=v.name.capitalize%><a href="/vendors/<%=v.id%>/edit">edit</a> or 
+    <form method="post" action="/vendor/<%=v.id%>">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+        </form>
     <br>
     <%end%>
 <%else%>

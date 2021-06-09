@@ -23,5 +23,9 @@ class VendorsController < ApplicationController
             erb :'vendors/new'
         end
     end
+
+    get '/vendors/:id/edit' do
+        redirect_if_not_loggedin
+    end
   
 end
