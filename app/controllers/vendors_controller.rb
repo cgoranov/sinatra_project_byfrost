@@ -26,6 +26,15 @@ class VendorsController < ApplicationController
 
     get '/vendors/:id/edit' do
         redirect_if_not_loggedin
+        @vendor = Vendor.find_by(id: params[:id])
+        erb :'vendors/:id/edit'
+    end
+
+    delete '/vendors/:id' do
+        redirect_if_not_loggedin
+        @vendor = Vendor.find_by(id: params[:id])
+        @vendor.destroy
+        redirect to '/vendors'
     end
   
 end
