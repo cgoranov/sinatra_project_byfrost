@@ -1,16 +1,20 @@
 <!DOCTYPE html> 
 <html>
     <head>
-    
+        <title>byfrost</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
     </head>
-    <body style="background: Pink">
-    <h2><a href="/">Home</a></h2>
-    <%if logged_in?%>
-    <h2><a href='/users/<%=current_user.slug%>'>Profile</a></h2>
-    <h2><a href='/vendors'>Vendor Database</a></h2>
-    <%end%>
+        <body>
+            <nav>
+                <a class="layoutnav" href="/">Home</a>
+                <%if logged_in?%>
+                <a class="layoutnav" href='/users/<%=current_user.slug%>'>Profile</a>
+                <a class="layoutnav" href='/vendors'>Vendor Database</a>
+                <%end%>
+            </nav>
+            <br>
 
-    <%=yield%>
-    
-    </body>
+                <%=yield%>
+            
+        </body>
 </html>
