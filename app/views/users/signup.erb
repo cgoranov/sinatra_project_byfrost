@@ -1,27 +1,33 @@
 <br>
-<h2>Sign up</h2>
+<h2 id="signup">Sign up</h2>
 <br>
-<%if !!@errors%>
-    <%if @errors.kind_of?(Array)%>
-        <%@errors.each do |e|%>
-        <br>
-        <%=e.capitalize%>
-        <br>
+<div id="signup">
+    <%if !!@errors%>
+        <%if @errors.kind_of?(Array)%>
+            <%@errors.each do |e|%>
+            <br>    
+            <%=e.capitalize%>
+            <br>
+            <%end%>
+        <%else%>
+            <%=@errors%>
         <%end%>
-    <%else%>
-        <%=@errors%>
     <%end%>
-<%end%>
-<form method="post" action="/signup">
-<label>Username: <input type="text" id="sign_up_username" name="username"></label>
-<br>
-<label>Password: <input type="text" id="sign_up_password" name="password"></label>
-<br>
-<br>
-<input type="submit" value="Sign me up!">
-</form>
+    <form method="post" action="/signup">
+        <div id="signupinputs">
+            <label id="signup">Username: <input type="text" id="sign_up_username" name="username"></label>
+            <br>
+            <br>
+            <label id="signup">Password: <input type="text" id="sign_up_password" name="password"></label>
+            <br>
+            <br>
+        </div>
+        <br>
+        <input type="submit" value="Sign me up!">
+    </form>
 
-<ul>
-    <li> Username must be up to 8 characters. Not case sensitive.
-    <li> Password must be up to 8 digits and contain at least one special character - ex. !*&^%$#`
-</ul>
+    <ul id="signup">
+        <li> Username must be up to 8 characters. Not case sensitive.
+        <li> Password must be up to 8 digits and contain at least one special character - ex. !*&^%$#`
+    </ul>
+</div>

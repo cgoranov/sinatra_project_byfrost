@@ -34,6 +34,7 @@ a.layoutnav:link, a.layoutnav:visited {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: 5px solid black;
   }
 
   a.mmnav:link, a.mmnav:visited {
@@ -56,5 +57,29 @@ a.layoutnav:link, a.layoutnav:visited {
     text-align: center;
   }
 
+  /* --- Sign Up Page Styles --- */
 
+  h2#signup {
+      text-align: center;
+      font-family: "Calibri Light";
+  }
 
+  div#signup {
+      text-align: center;
+      font-family: "Calibri Light";
+      border: 10px solid black;
+      padding: 50px;
+      width: 650px;
+      height: 150px;
+      margin: auto;
+      background-color: white;
+  }
+
+  ul#signup {
+      text-align: left;
+  }
+
+  div#signupinputs {
+      display: inline-block;
+      text-align: right;
+  }
