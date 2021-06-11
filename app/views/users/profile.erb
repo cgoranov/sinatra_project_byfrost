@@ -1,21 +1,21 @@
-Your Profile
+<br>
+<h2 id="profile">Your Profile</h2>
 <br>
 <br>
-<%if logged_in?%>
-Username: <%=@user.username%>
-<%end%>
-<br>
-<br>
-<a href="/budgets">Your budgets</a>
-<br>
-<br>
-<form method="POST" action="/logout">
-<input type="submit" value="Log Out">
-</form>
-<br>
-<form method="post" action="/delete">
-<input id="hidden" type="hidden" name="_method" value="DELETE">
-<input type="submit" value="Delete Profile">
-</form>
+<img src="/images/profile picture.jpg" alt="Profile Picture" id="profile">
+<div id="profile">
+    <h3>Username: <%=@user.username%></h3>
+    <a id="yourbudgets" href="/budgets">Your budgets</a>
+    <br>
+    <br>
+    <form method="POST" action="/logout">
+        <input type="submit" value="Log Out">
+    </form>
+    <br>
+    <form method="post" action="/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Profile">
+    </form>
+</div>
 
 

@@ -69,8 +69,8 @@ a.layoutnav:link, a.layoutnav:visited {
       font-family: "Calibri Light";
       border: 10px solid black;
       padding: 50px;
-      width: 650px;
-      height: 150px;
+      width: 700px;
+      height: 200px;
       margin: auto;
       background-color: white;
   }
@@ -82,4 +82,70 @@ a.layoutnav:link, a.layoutnav:visited {
   div#signupinputs {
       display: inline-block;
       text-align: right;
+  }
+
+  /* --- Log in Page Styles --- */
+
+  h2#login {
+    text-align: center;
+    font-family: "Calibri Light";
+}
+
+div#login {
+    text-align: center;
+    font-family: "Calibri Light";
+    border: 10px solid black;
+    padding: 50px;
+    width: 700px;
+    height: 150px;
+    margin: auto;
+    background-color: white;
+}
+
+div#loginfields {
+    display: inline-block;
+      text-align: right;
+}
+
+  /* --- Log in Page Styles --- */
+
+  h2#profile {
+    text-align: center;
+    font-family: "Calibri Light";
+}
+
+img#profile {
+    display: block;
+    border-radius: 75%;
+    height: 100px;
+    position: absolute;
+    left: 635px;
+    top: 150px;
+}
+
+div#profile {
+    text-align: center;
+    font-family: "Calibri Light";
+    border: 10px solid black;
+    padding: 50px;
+    width: 200px;
+    height: 170px;
+    margin: auto;
+    background-color: white;
+}
+
+a#yourbudgets:link, a#yourbudgets:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Calibri Light";
+  }
+  
+  a#yourbudgets:hover, a#yourbudgets:active {
+    background-color: pink;
+    color: white;
   }
