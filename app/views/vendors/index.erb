@@ -12,16 +12,16 @@
         <%if !@vendors.empty?%>
             <%@vendors.each do |v|%>
     <tr>
-        <th>
+        <td>
             <%=v.name.capitalize%>
-        </th>
-        <th>
+        </td>
+        <td>
             <a href="/vendors/<%=v.id%>/edit">edit</a> or 
             <form method="post" action="/vendors/<%=v.id%>">
                 <input id="hidden" type="hidden" name="_method" value="DELETE">
                 <input type="submit" value="Delete">
             </form>
-        </th>
+        </td>
     </tr>
             <%end%>
         <%else%>

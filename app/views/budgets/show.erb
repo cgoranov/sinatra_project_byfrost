@@ -1,11 +1,11 @@
 
-<a href="/budgets">Your Budgets</a>
+<a id="showback" href="/budgets">Your Budgets</a>
 <br>
 <br>
-<%=@budget.name.capitalize%> Budget Dashboard
+<h2 id="dashboard"><%=@budget.name.capitalize%> Budget Dashboard</h2>
 <br>
 <br>
-<table>
+<table id="showbudgets">
     <tr>
         <th>PO Number</th>
         <th>PO Vendor</th>
@@ -13,25 +13,25 @@
         <th>PO Adjustments</th>
         <%@budget.purchase_orders.each do |p|%>
     </tr>
-        <th><%=p.po_number%></th>
-        <th><%=p.vendor.name.capitalize%></th>
-        <th><%=format_number(p.po_authorized_amount)%></th>
-        <th>
+        <td><%=p.po_number%></td>
+        <td><%=p.vendor.name.capitalize%></td>
+        <td><%=format_number(p.po_authorized_amount)%></td>
+        <td>
             <a href="/purchase_orders/<%=p.id%>/edit">edit</a> 
             or 
             <form method="post" action="/purchase_orders/<%=p.id%>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">
             </form>
-        </th>
+        </td>
         <%@open_po_sum += p.po_authorized_amount%>
     <tr>
      <%end%>
     <tr>
-        <th><a href="/purchase_orders/new">Add PO</a></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td><a href="/purchase_orders/new">Add PO</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <th>Total Open PO Project Spend</th>
@@ -39,7 +39,7 @@
         <th><%=format_number(@open_po_sum)%></th>
     </tr>
     <tr>
-        <th><%=@budget.name.capitalize%>Target</th>
+        <th><%=@budget.name.capitalize%> Target</th>
         <th></th>
         <th><%= format_number(@budget.target) %></th>
     </tr>
@@ -51,10 +51,10 @@
 </table>
 <br>
 <br>
-<a href="/budgets/<%=@budget.id%>/edit">Edit Budget</a>
+<a id="showedit" href="/budgets/<%=@budget.id%>/edit">Edit Budget</a>
 <br>
 <br>
 <form method="post" action="/budgets/<%=@budget.id%>">
-<input id="hidden" type="hidden" name="_method" value="DELETE">
-<input type="submit" value="Delete Budget">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Budget">
 </form>

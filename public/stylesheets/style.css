@@ -212,3 +212,67 @@ a#yourbudgets:link, a#yourbudgets:visited {
         display: inline-block;
         text-align: right;
     }
+
+    /* --- New Budget Styles --- */
+
+    h2#dashboard {
+        text-align: center;
+        font-family: "Calibri Light";
+    }
+
+    table#showbudgets {
+        font-family: "Calibri Light";
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+    tr {
+          background-color: #f2f2f2;
+        }
+    
+    tr:hover {
+            background-color: #ddd;
+        }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rebeccapurple;
+        color: white;
+          }
+
+    a#showedit:link, a#showedit:visited {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Calibri Light";
+          }
+          
+    a#showedit:hover, a#showedit:active {
+        background-color: pink;
+        color: white;
+          }
+
+    a#showback:link, a#showback:visited {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Calibri Light";
+            }
+              
+    a#showback:hover, a#showback:active {
+        background-color: pink;
+        color: white;
+              }
