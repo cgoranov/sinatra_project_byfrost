@@ -1,16 +1,24 @@
 
-Create your new budget!
+<h2 id="newbudget">Create your new budget!</h2>
 <br>
-<%if !!@errors%>
-    <%@errors.each do |e|%>
-    <br>
-    <%=e.capitalize%>
-    <br>
+<div id="newbudget">
+    <%if !!@errors%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <br>
+        <%end%>
     <%end%>
-<%end%>
-<br>
-<form method="post" action="/budgets">
-<label>Budget Name:<input type="text" id="name" name="name"></label>
-<label>Budget Target:<input type="text" id="target" name="target"></label>
-<input type="submit" value="Create My Budget!">
-</form>
+    <br>
+    <form method="post" action="/budgets">
+        <div id="newfields">
+            <label>Budget Name: <input type="text" id="name" name="name"></label>
+            <br>
+            <br>
+            <label>Budget Target: <input type="text" id="target" name="target"></label>
+        </div>
+        <br>
+        <br>
+        <input type="submit" value="Create My Budget!">
+    </form>
+</div>
