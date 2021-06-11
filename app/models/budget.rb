@@ -5,6 +5,5 @@ class Budget < ActiveRecord::Base
     has_many :vendors, through: :purchase_orders
     validates :name, :target, presence: true
     validates :target, numericality: { only_integer: true }
-    validates :name, uniqueness: true
-
+    # validates :name, uniqueness: true
 end

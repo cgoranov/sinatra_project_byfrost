@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        redirect_if_not_loggedin
         user = User.new(username: params[:username].downcase, password: params[:password])
         if user.valid? && valid_password?(params[:password])
             user.save

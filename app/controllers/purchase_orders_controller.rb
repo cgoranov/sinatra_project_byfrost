@@ -3,7 +3,7 @@ class PurchaseOrdersController < ApplicationController
     
     get '/purchase_orders/new' do
         redirect_if_not_loggedin
-        binding.pry
+        # binding.pry
         erb :'purchase_orders/new'
     end
 
