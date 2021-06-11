@@ -23,6 +23,9 @@ a.layoutnav:link, a.layoutnav:visited {
 
   nav {
     text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 
 /* --- Main Menu Page Styles --- */
@@ -149,3 +152,41 @@ a#yourbudgets:link, a#yourbudgets:visited {
     background-color: pink;
     color: white;
   }
+
+  /* --- Budgets Index Styles --- */
+
+  h2#yourbudgets {
+    text-align: center;
+    font-family: "Calibri Light";
+    }
+    div#budgetindex {
+        margin: auto;
+        text-align: center;
+    }
+    
+    a.budgetselect:link, a.budgetselect:visited {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Calibri Light";
+      }
+      
+    a.budgetselect:hover, a.budgetselect:active {
+        background-color: pink;
+        color: white;
+      }
+    
+      div#budgeteach {
+          float: left;
+          margin: 50px;
+          padding: 15px;
+          align-items: center;
+    
+      }
+
+      img.budgeticon {
+        border: 5px solid black;
+      }

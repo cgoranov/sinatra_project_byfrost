@@ -1,16 +1,23 @@
 
-Your Budgets
+<h2 id="yourbudgets">Your Budgets</h2>
 <br>
 <br>
-<a href="/budgets/new">Add new budget +</a>
-<br>
-<%if !current_user.budgets.empty?%>
-    <%current_user.budgets.each do |b|%>
+<div id="budgetindex">
+    <a class="budgetselect" href="/budgets/new">Add new budget +</a>
     <br>
-    <a href="/budgets/<%=b.id%>"><%="#{b.name.capitalize} budget"%></a>
     <br>
+    <%if !current_user.budgets.empty?%>
+        <%current_user.budgets.each do |b|%>
+            <div id="budgeteach">
+                <img src="/images/budget icon.jpg" alt="Budget Icon" class="budgeticon">
+                <br>
+                <a class="budgetselect" href="/budgets/<%=b.id%>">
+                    <p id="budgettext"> <%="#{b.name.capitalize} budget"%></p>
+                </a>
+            </div>
+        <%end%>
+    <%else%>
+        <br>
+        <p id="nobudgets"><%="You have no budgets. Try making one!"%></p>
     <%end%>
-<%else%>
-    <br>
-    <%="You have no budgets. Try making one!"%>
-<%end%>
+</div>
