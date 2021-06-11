@@ -1,16 +1,18 @@
-<h2 id="editpo">Edit Purchase Order Number <%=@po.po_number%></h2>
+<h2 id="createpo">Edit Purchase Order Number <%=@po.po_number%></h2>
 <br>
 <br>
-<%if !!@errors%>
+<div id="newpo">
+  <%if !!@errors%>
     <%@errors.each do |e|%>
     <br>
     <%=e.capitalize%>
     <br>
     <%end%>
-<%end%>
-<br>
-<form method="post" action="/purchase_orders/<%=@po.id%>">
-  <input id="hidden" type="hidden" name="_method" value="patch">
+  <%end%>
+  <br>
+  <form method="post" action="/purchase_orders/<%=@po.id%>">
+    <div id="newinput">
+    <input id="hidden" type="hidden" name="_method" value="patch">
     <label>PO Authorized Amount: <input type="text" id="edit_po_auth_amount" name="po[po_authorized_amount]" value="<%=@po.po_authorized_amount%>"></label>
     <br>
     Change to another existing vendor (current vendor selected by default):
@@ -29,7 +31,9 @@
       <option value="<%=b.id%>" <%="selected" if b.id == @po.budget.id%>><%=b.name.capitalize%></option>
       <%end%>
     </select>
+    </div>
     <br>
     <br>
     <input type="submit" value="Update Purchase Order!">
-</form>
+  </form>
+</div>

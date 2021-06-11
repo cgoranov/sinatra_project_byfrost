@@ -1,13 +1,17 @@
-Create Vendor
+<h2 id="createpo">Create Vendor</h2>
 <br>
-<%if !!@errors%>
-    <%@errors.each do |e|%>
-    <%=e.capitalize%>
-    <br>
+<div id="signup">
+    <%if !!@errors%>
+        <%@errors.each do |e|%>
+        <%=e.capitalize%>
+        <br>
+        <%end%>
     <%end%>
-<%end%>
-<br>
-<form method="post" action="/vendors">
-<label>Vendor Name:<input type="text" id="name" name="name"></label>
-<input type="submit" value="Create Vendor">
-</form>
+    <br>
+    <form method="post" action="/vendors">
+        <div id="signupinputs">
+            <label>Vendor Name:<input type="text" id="name" name="name"></label>
+            <input type="submit" value="Create Vendor">
+        </div>
+    </form>
+</div>

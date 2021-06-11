@@ -1,18 +1,22 @@
-Edit Vendor
+<h2 id="createpo">Edit Vendor</h2>
 <br>
 <br>
-<%if !!@errors%>
-    <%@errors.each do |e|%>
-    <br>
-    <%=e.capitalize%>
-    <br>
+<div id="signup">
+    <%if !!@errors%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <br>
+        <%end%>
     <%end%>
-<%end%>
-<br>
-<form method="post" action="/vendors/<%=@vendor.id%>">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Vendor Name:<input id="edit_vendor_name" type="text" name="vendor[name]" value="<%=@vendor.name.capitalize%>"></label>
-    <%if logged_in?%>
-        <input type="submit" name="Submit">
-    <%end%>
-</form>
+    <br>
+    <form method="post" action="/vendors/<%=@vendor.id%>">
+        <div id="signupinputs">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <label>Vendor Name: <input id="edit_vendor_name" type="text" name="vendor[name]" value="<%=@vendor.name.capitalize%>"></label>
+        </div>
+        <%if logged_in?%>
+            <input type="submit" name="Submit">
+        <%end%>
+    </form>
+</div>
