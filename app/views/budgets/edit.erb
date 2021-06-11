@@ -1,21 +1,27 @@
-Edit Budget
+<h2 id="editbudget">Edit Budget</h2>
 <br>
 <br>
-<%if !!@errors%>
-    <%@errors.each do |e|%>
-    <br>
-    <%=e.capitalize%>
-    <br>
+<div id="editbudget">
+    <%if !!@errors%>
+        <%@errors.each do |e|%>
+        <br>
+        <%=e.capitalize%>
+        <br>
+        <%end%>
     <%end%>
-<%end%>
 <br>
-<form method="post" action="/budgets/<%=@budget.id%>">
-<input id="hidden" type="hidden" name="_method" value="patch">
-<label>Budget Name:<input id="edit_budget_name" type="text" name="budget[name]" value="<%=@budget.name.capitalize%>"></label>
-<br>
-<label>Budget Target:<input id="edit_budget_target" type="text" name="budget[target]" value=<%=@budget.target%>></label>
-<br>
-<%if current_user.budgets.include?(@budget)%>
-<input type="submit" name="Submit">
-<%end%>
-</form>
+    <form method="post" action="/budgets/<%=@budget.id%>">
+        <div id="editinputs">
+            <input id="hidden" type="hidden" name="_method" value="patch">
+            <label>Budget Name:<input id="edit_budget_name" type="text" name="budget[name]" value="<%=@budget.name.capitalize%>"></label>
+            <br>
+            <label>Budget Target:<input id="edit_budget_target" type="text" name="budget[target]" value=<%=@budget.target%>></label>
+            <br>
+        </div>
+        <br>
+        <br>
+        <%if current_user.budgets.include?(@budget)%>
+            <input type="submit" name="Submit">
+        <%end%>
+    </form>
+</div>

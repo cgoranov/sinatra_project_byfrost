@@ -213,7 +213,7 @@ a#yourbudgets:link, a#yourbudgets:visited {
         text-align: right;
     }
 
-    /* --- New Budget Styles --- */
+    /* --- Budget Dashboard Styles --- */
 
     h2#dashboard {
         text-align: center;
@@ -276,3 +276,49 @@ a#yourbudgets:link, a#yourbudgets:visited {
         background-color: pink;
         color: white;
               }
+
+    /* --- Edit Budget Styles --- */
+
+    h2#editbudget {
+        text-align: center;
+        font-family: "Calibri Light";
+    }
+    
+    div#editbudget {
+        text-align: center;
+        font-family: "Calibri Light";
+        border: 10px solid black;
+        padding: 50px;
+        width: 700px;
+        height: 150px;
+        margin: auto;
+        background-color: white;
+    }
+    
+    div#editinputs {
+        display: inline-block;
+          text-align: right;
+    }
+
+     /* --- Edit PO Styles --- */
+
+     h2#createpo {
+        text-align: center;
+        font-family: "Calibri Light";
+    }
+
+    div#newpo {
+        text-align: center;
+        font-family: "Calibri Light";
+        border: 10px solid black;
+        padding: 50px;
+        width: 700px;
+        height: 250px;
+        margin: auto;
+        background-color: white;
+    }
+
+    div#newinput {
+        display: inline-block;
+          text-align: left;
+    }
