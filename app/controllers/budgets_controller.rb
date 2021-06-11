@@ -2,7 +2,7 @@
 class BudgetsController < ApplicationController
 
     get '/budgets' do
-        redirect_if_not_loggedin       
+        redirect_if_not_loggedin  
         erb :'budgets/index'
     end
 
@@ -70,5 +70,6 @@ class BudgetsController < ApplicationController
                 redirect to '/budgets'
             end
         end
+    
 
 end
