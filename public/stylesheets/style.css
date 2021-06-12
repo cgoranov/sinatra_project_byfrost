@@ -321,3 +321,24 @@ a#yourbudgets:link, a#yourbudgets:visited {
         display: inline-block;
           text-align: left;
     }
+
+      /* --- Vendor Index Styles --- */
+
+    h2#vendortitle {
+      font-family: "Calibri Light";
+  }
+
+  a#vendorb:link, a#vendorb:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Calibri Light";
+        }
+          
+a#vendorb:hover, a#vendorb:active {
+    background-color: pink;
+    color: white;
+          }
