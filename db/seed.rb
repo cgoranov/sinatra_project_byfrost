@@ -1,0 +1,1 @@
+PurchaseOrder.find_or_create_by(po_number: 42001, po_authorized_amount: 100000, )

@@ -2,7 +2,7 @@
 /* --- Layout Styles --- */
 
 body {
-    background-color: pink;
+  background-color: pink;
 }
 
 a.layoutnav:link, a.layoutnav:visited {
@@ -110,7 +110,7 @@ div#loginfields {
       text-align: right;
 }
 
-  /* --- Log in Page Styles --- */
+  /* --- Profile Styles --- */
 
   h2#profile {
     text-align: center;
@@ -121,9 +121,8 @@ img#profile {
     display: block;
     border-radius: 75%;
     height: 100px;
-    position: absolute;
-    left: 635px;
-    top: 150px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div#profile {
@@ -132,7 +131,7 @@ div#profile {
     border: 10px solid black;
     padding: 50px;
     width: 200px;
-    height: 170px;
+    height: 250px;
     margin: auto;
     background-color: white;
 }
@@ -297,7 +296,7 @@ a#yourbudgets:link, a#yourbudgets:visited {
     
     div#editinputs {
         display: inline-block;
-          text-align: right;
+        text-align: right;
     }
 
      /* --- Edit PO Styles --- */
